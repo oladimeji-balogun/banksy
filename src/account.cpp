@@ -4,16 +4,16 @@
 Account::Account(const std::string& account_id, const std::string& owner_name, double balance, AccountType type) : account_id(account_id), owner_name(owner_name), balance(balance), type(type) {}
 
 // the getters
-std::string Account::getAccountID() const {
+std::string Account::get_account_id() const {
     return account_id;
 }
-std::string Account::getOwnerName() const {
+std::string Account::get_owner_name() const {
     return owner_name;
 }
-double Account::getBalance() const {
+double Account::get_balance() const {
     return balance;
 }
-AccountType Account::getAccountType() const {
+AccountType Account::get_account_type() const {
     return type;
 }
 

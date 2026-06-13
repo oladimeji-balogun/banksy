@@ -11,22 +11,22 @@ Transaction::Transaction(
 ) : transaction_id(transaction_id), account_id(account_id), amount(amount), type(type), timestamp(timestamp) {}
 
 // the getters
-std::string Transaction::getTransactionID() const {
+std::string Transaction::get_transaction_id() const {
     return transaction_id;
 }
 
-std::string Transaction::getAccountID() const {
+std::string Transaction::get_account_id() const {
     return account_id;
 }
 
-double Transaction::getAmount() const {
+double Transaction::get_amount() const {
     return amount;
 }
-TransactionType Transaction::getTransactionType() const {
+TransactionType Transaction::get_transaction_type() const {
     return type;
 }
 
-std::string Transaction::getTimestamp() const {
+std::string Transaction::get_timestamp() const {
     return timestamp;
 }
 

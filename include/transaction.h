@@ -28,11 +28,11 @@ class Transaction {
             const std::string& timestamp
         );
 
-        std::string getTransactionID() const;
-        std::string getAccountID() const;
-        double getAmount() const;
-        TransactionType getTransactionType() const;
-        std::string getTimestamp() const;
+        std::string get_transaction_id() const;
+        std::string get_account_id() const;
+        double get_amount() const;
+        TransactionType get_transaction_type() const;
+        std::string get_timestamp() const;
 
         // public static helpers
         static TransactionType string_to_type(const std::string& type_str);

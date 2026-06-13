@@ -14,12 +14,12 @@ class FileStore {
     public:
         FileStore(const std::string& accounts_file, const std::string& transactions_file);
 
-        void saveAccount(const Account& account);
-        std::vector<Account> loadAccounts();
+        void save_account(const Account& account);
+        std::vector<Account> load_accounts();
 
-        void saveTransaction(const Transaction& transaction);
+        void save_transaction(const Transaction& transaction);
         // load tranactions with the account id filter
-        std::vector<Transaction> loadTransactions(const std::string& account_id);
+        std::vector<Transaction> load_transactions(const std::string& account_id);
 
 };
 #endif

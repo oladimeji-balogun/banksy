@@ -8,20 +8,20 @@ FileStore::FileStore(
     const std::string& transactions_file
 ) : accounts_file(accounts_file), transactions_file(transactions_file) {}
 
-void FileStore::saveAccount(const Account& account) {
+void FileStore::save_account(const Account& account) {
     std::ofstream file(accounts_file, std::ios::app);
     if (!file.is_open()) {
         std::cout << "encountered an error when opening file.\n";
         return;
     }
-    file << account.getAccountID() << ","
-        << account.getOwnerName() << ","
-        << account.getBalance() << ","
-        << account.type_to_string(account.getAccountType()) << "\n";
-    std::cout << "account: " << account.getAccountID() << " has been added successfully.";
+    file << account.get_account_id() << ","
+        << account.get_owner_name() << ","
+        << account.get_balance() << ","
+        << account.type_to_string(account.get_account_type()) << "\n";
+    std::cout << "account: " << account.get_account_id() << " has been added successfully.";
 }
 
-std::vector<Account> FileStore::loadAccounts() {
+std::vector<Account> FileStore::load_accounts() {
     std::ifstream file(accounts_file);
 
     if (!file.is_open()) {
@@ -55,7 +55,7 @@ std::vector<Account> FileStore::loadAccounts() {
     return accounts;
 }
 
-void FileStore::saveTransaction(const Transaction& transaction) {
+void FileStore::save_transaction(const Transaction& transaction) {
     // open the file
     std::ofstream file(transactions_file, std::ios::app);
     if (!file.is_open()){
@@ -63,16 +63,16 @@ void FileStore::saveTransaction(const Transaction& transaction) {
         return;
     }
 
-    file << transaction.getTransactionID() << ","
-        << transaction.getAccountID() << ","
-        << transaction.getAmount() << ","
-        << Transaction::type_to_string(transaction.getTransactionType()) << ","
-        << transaction.getTimestamp() << "\n";
+    file << transaction.get_transaction_id() << ","
+        << transaction.get_account_id() << ","
+        << transaction.get_amount() << ","
+        << Transaction::type_to_string(transaction.get_transaction_type()) << ","
+        << transaction.get_timestamp() << "\n";
 
-    std::cout << "transaction: " << transaction.getAccountID() << " has been saved successfully.";
+    std::cout << "transaction: " << transaction.get_account_id() << " has been saved successfully.";
 }
 
-std::vector<Transaction> FileStore::loadTransactions(const std::string& account_id) {
+std::vector<Transaction> FileStore::load_transactions(const std::string& account_id) {
     // open the file
     std::ifstream file(transactions_file);
     if (!file.is_open()) {
@@ -120,7 +120,7 @@ std::vector<Transaction> FileStore::loadTransactions(const std::string& account_
 
     std::vector<Transaction> result;
     for (auto transaction : transactions) {
-        if (transaction.getAccountID() == account_id) {
+        if (transaction.get_account_id() == account_id) {
             result.push_back(transaction);
         }
     }
