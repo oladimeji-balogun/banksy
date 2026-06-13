@@ -4,6 +4,7 @@
 #include <vector>
 #include "transaction.h"
 #include "account.h"
+#include <string>
 
 class FileStore {
     private:
