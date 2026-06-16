@@ -2,6 +2,7 @@
 #include "bank.h"
 #include <sstream>
 #include <iomanip>
+#include <algorithm>
 
 Bank::Bank(FileStore store) : store(store), accounts(store.load_accounts()) {}
 
@@ -20,7 +21,17 @@ void Bank::create_account(const std::string& owner_name, AccountType type) {
     store.save_account(account);
     // account created successfully
     std::cout << "account created successfully.\n";
-
-
-
 }
+
+Account* Bank::find_account(const std::string& account_id) {
+    auto it = std::find_if(accounts.begin(), accounts.end(), [&account_id](Account account) {
+        return account_id == account.get_account_id();
+    });
+
+    if (it == accounts.end()) {
+        std::cout << "no accounts found for this account ID: " << account_id << "\n";
+        return {};
+    }
+
+    return &(*it);
+} 
