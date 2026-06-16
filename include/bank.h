@@ -8,6 +8,7 @@ class Bank {
     private: 
         std::vector<Account> accounts;
         FileStore store;
+        
 
     public: 
         Bank(FileStore store);
