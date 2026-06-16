@@ -35,3 +35,13 @@ Account* Bank::find_account(const std::string& account_id) {
 
     return &(*it);
 } 
+
+void Bank::list_accounts() const {
+    for (Account account : accounts) {
+        // print all the variables to stdout 
+        std::cout << "account_id: " << account.get_account_id() << " | " 
+            << "owner_name: " << account.get_owner_name() << " | "
+            << "balance: " << account.get_balance() << " | "
+            << "type: " << Account::type_to_string(account.get_account_type());
+    }
+}
