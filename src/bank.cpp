@@ -65,31 +65,9 @@ void Bank::deposit(const std::string& account_id, double amount) {
         return;
     }
 
+    std::string transaction_id = Bank::generate_transaction_id();
+    std::string timestamp = Bank::generate_timestamp();
     
-    int next_num = store.count_transactions() + 1;
-    std::ostringstream ss;
-    ss << "TXN-" << std::setw(4) << std::setfill('0') << next_num;
-
-    std::string transaction_id = ss.str();
-
-    // get the timestamp
-    // get current time
-    std::time_t now = std::time(nullptr);
-
-    // convert to local time struct
-    std::tm* local_time = std::localtime(&now);
-
-    // format it into a string
-    std::ostringstream ts;
-    ts << (1900 + local_time->tm_year) << "-"
-    << std::setw(2) << std::setfill('0') << (1 + local_time->tm_mon) << "-"
-    << std::setw(2) << std::setfill('0') << local_time->tm_mday << " "
-    << std::setw(2) << std::setfill('0') << local_time->tm_hour << ":"
-    << std::setw(2) << std::setfill('0') << local_time->tm_min << ":"
-    << std::setw(2) << std::setfill('0') << local_time->tm_sec;
-
-    std::string timestamp = ts.str();
-    // produces: 2024-01-15 10:30:00
 
     Transaction transaction(transaction_id, account_id, amount, TransactionType::DEPOSIT, timestamp);
     store.save_transaction(transaction);
@@ -115,29 +93,12 @@ void Bank::withdraw(const std::string& account_id, double amount) {
     }
 
 
-    int next_num = store.count_transactions() + 1;
-    std::ostringstream ss;
-    ss << "TXN-" << std::setw(4) << std::setfill('0') << next_num;
+    
 
-    std::string transaction_id = ss.str();
+    std::string transaction_id = Bank::generate_transaction_id();
 
     // get the timestamp
-    // get current time
-    std::time_t now = std::time(nullptr);
-
-    // convert to local time struct
-    std::tm* local_time = std::localtime(&now);
-
-    // format it into a string
-    std::ostringstream ts;
-    ts << (1900 + local_time->tm_year) << "-"
-        << std::setw(2) << std::setfill('0') << (1 + local_time->tm_mon) << "-"
-        << std::setw(2) << std::setfill('0') << local_time->tm_mday << " "
-        << std::setw(2) << std::setfill('0') << local_time->tm_hour << ":"
-        << std::setw(2) << std::setfill('0') << local_time->tm_min << ":"
-        << std::setw(2) << std::setfill('0') << local_time->tm_sec;
-
-    std::string timestamp = ts.str();
+    std::string timestamp = Bank::generate_timestamp();
     // produces: 2024-01-15 10:30:00
 
     // creation a transaction
@@ -163,4 +124,35 @@ void Bank::get_transaction_history(const std::string& account_id) const {
             << t.get_timestamp();
     }
 
+}
+
+std::string Bank::generate_timestamp() const {
+    // get the timestamp
+    // get current time
+    std::time_t now = std::time(nullptr);
+
+    // convert to local time struct
+    std::tm* local_time = std::localtime(&now);
+
+    // format it into a string
+    std::ostringstream ts;
+    ts << (1900 + local_time->tm_year) << "-"
+    << std::setw(2) << std::setfill('0') << (1 + local_time->tm_mon) << "-"
+    << std::setw(2) << std::setfill('0') << local_time->tm_mday << " "
+    << std::setw(2) << std::setfill('0') << local_time->tm_hour << ":"
+    << std::setw(2) << std::setfill('0') << local_time->tm_min << ":"
+    << std::setw(2) << std::setfill('0') << local_time->tm_sec;
+
+    std::string timestamp = ts.str();
+    // produces: 2024-01-15 10:30:00
+    return timestamp;
+}
+
+std::string Bank::generate_transaction_id() const {
+    int next_num = store.count_transactions() + 1;
+    std::ostringstream ss;
+    ss << "TXN-" << std::setw(4) << std::setfill('0') << next_num;
+
+    std::string transaction_id = ss.str();
+    return transaction_id;
 }

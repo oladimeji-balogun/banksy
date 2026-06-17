@@ -9,7 +9,8 @@ class Bank {
         std::vector<Account> accounts;
         FileStore store;
         // std::vector<Transaction> transaction;
-        
+        std::string generate_timestamp() const;
+        std::string generate_transaction_id() const;        
 
     public: 
         Bank(FileStore store);
