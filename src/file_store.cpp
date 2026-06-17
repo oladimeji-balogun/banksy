@@ -72,7 +72,7 @@ void FileStore::save_transaction(const Transaction& transaction) {
     std::cout << "transaction: " << transaction.get_account_id() << " has been saved successfully.";
 }
 
-std::vector<Transaction> FileStore::load_transactions(const std::string& account_id) {
+std::vector<Transaction> FileStore::load_transactions(const std::string& account_id) const {
     // open the file
     std::ifstream file(transactions_file);
     if (!file.is_open()) {

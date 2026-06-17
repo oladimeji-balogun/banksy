@@ -149,6 +149,18 @@ void Bank::withdraw(const std::string& account_id, double amount) {
         timestamp
     );
     store.save_transaction(transaction);
+}
 
+void Bank::get_transaction_history(const std::string& account_id) const {
+    std::vector<Transaction> transactions = store.load_transactions(account_id);
+
+    std::cout << "for user: " << account_id << ", the transaction history is: \n";
+    for (Transaction t : transactions) {
+        std::cout << t.get_account_id() << " | "
+            << t.get_transaction_id() << " | " 
+            << t.type_to_string(t.get_transaction_type()) << " | "
+            << t.get_amount() << " | "
+            << t.get_timestamp();
+    }
 
 }

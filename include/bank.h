@@ -19,7 +19,7 @@ class Bank {
         void list_accounts() const;
         void deposit(const std::string& account_id, double amount);
         void withdraw(const std::string& account_id, double amount);
-        void get_transaction_history(const std::string& account_id);
+        void get_transaction_history(const std::string& account_id) const;
 };
 
 #endif
