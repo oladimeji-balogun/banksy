@@ -20,6 +20,7 @@ class FileStore {
         void save_transaction(const Transaction& transaction);
         // load tranactions with the account id filter
         std::vector<Transaction> load_transactions(const std::string& account_id);
+        int count_transactions() const;
 
 };
 #endif

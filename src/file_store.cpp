@@ -130,3 +130,23 @@ std::vector<Transaction> FileStore::load_transactions(const std::string& account
     }
     return result;
 }
+
+int FileStore::count_transactions() const {
+    std::ifstream file(transactions_file);
+
+    if (!file.is_open()) {
+        std::cout << "error in opening the file.\n";
+        return 0;
+    }
+
+    std::string line;
+    int line_count = 0;
+
+    while (std::getline(file, line)) {
+        line_count++;
+    }
+    file.close();
+
+    return line_count;
+
+}
