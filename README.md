@@ -1,6 +1,6 @@
 # Banksy: Simple Bank Account System
 
-A command-line bank account management system built in C++17. Banksy simulates core banking operations — account creation, deposits, withdrawals, and transaction history — across multiple accounts with CSV-based persistence.
+A command-line bank account management system built in C++17. Banksy simulates core banking operations: account creation, deposits, withdrawals, and transaction history across multiple accounts with CSV-based persistence.
 
 Built as a structured C++ learning project focusing on OOP design, class composition, file I/O, and clean separation of concerns.
 
